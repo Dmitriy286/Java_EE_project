@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!--        Указываем класс JDBC драйвера. -->
+        <property name="hibernate.connection.driver_class">
+            org.postgresql.Driver
+        </property>
+
+<!--Указываем Hibernate диалект БД. Hibernate, в свою очередь, генерирует  SQL-запросы-->
+        <property name="hibernate.dialect">
+            org.hibernate.dialect.PostgreSQL10Dialect
+        </property>
+
+        <property name="hibernate.connection.url">
+            jdbc:postgresql://localhost:5432/postgres
+        </property>
+
+        <property name="hibernate.connection.username">
+            postgres
+        </property>
+
+        <property name="hibernate.connection.password">
+            admin
+        </property>
+
+        <property name="default_schema">
+            new_schema
+        </property>
+
+        <property name="hibernate.connection.pool_size">
+<!--        Ограничивает количество соединений, которые находятся в пуле соединений Hibernate.-->
+            3
+        </property>
+
+<!--        <property name="hibernate.connection.autocommit">-->
+<!--        Указывает режим autocommit для JDBC-соединения.-->
+<!--            -->
+<!--        </property>-->
+
+
+        <property name="hibernate.generate_statistics">
+<!--        включить сбор статистики-->
+            true
+        </property>
+
+        <property name="hbm2ddl.auto">
+            update
+        </property>
+
+        <property name="hibernate.enable_lazy_load_no_trans">
+            true
+        </property>
+
+        <property name="show_sql">
+            <!-- Show SQL in console -->
+            true
+        </property>
+
+        <property name="format_sql">
+            <!-- Show SQL formatted -->
+            true
+        </property>
+
+        <property name="current_session_context_class">
+<!--        К какому контексту будет привязана сессия (в нашем случае - к потоку)-->
+            thread
+        </property>
+
+        <mapping class="entity.Human" />
+        <mapping class="entity.Wife" />
+        <mapping class="entity.Child" />
+
+        <mapping resource="human.cfg.xml"></mapping>
+        <mapping resource="wife.cfg.xml"></mapping>
+        <mapping resource="child.cfg.xml"></mapping>
+
+    </session-factory>
+</hibernate-configuration>

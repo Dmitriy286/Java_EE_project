@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="entity.Child" table="children">
+        <id name="id" column="id" type="int">
+            <generator class="increment"/>
+        </id>
+        <property name="name" column="name" type="string"/>
+        <property name="age" column="age" type="int"/>
+
+        <many-to-one name="wife" class="entity.Wife">
+<!-- Здесь указывается имя столбца, в котором будет внешний ключ к связанной сущности-->
+            <column name="wife_id"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>
